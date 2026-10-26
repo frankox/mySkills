@@ -7,7 +7,7 @@ The plan is both the agreed implementation sequence and the current handoff stat
 - **Brief description:** the problem and intended result for this story.
 - **Story and scope:** source reference when available, a compact snapshot of the relevant AC or completion targets with stable labels, constraints, and exclusions. Include enough context to resume even if the source cannot immediately be fetched.
 - **Repository context:** repository or checkout identity, branch and commit when available, relevant paths, documentation or skill references, and the actual state of existing or uncommitted work.
-- **Incremental steps:** stable IDs, outcome, coverage, implementation boundary, completion criteria, validation, dependencies, status, and review evidence.
+- **Incremental steps:** a progress table covering every step, followed by details with stable IDs, outcome, coverage, implementation boundary, completion criteria, validation, explicit current status, and review evidence.
 - **Current state:** active or next step, plan revision, unresolved questions or blockers, accepted decisions, exact next action, and execution authority.
 
 Use this structure as a compact default. Preserve a supplied plan's equivalent structure instead of reformatting it unnecessarily:
@@ -30,6 +30,12 @@ Use this structure as a compact default. Preserve a supplied plan's equivalent s
 - Working tree / existing work: [...]
 
 ## Incremental steps
+
+| Step | Outcome | Status |
+| --- | --- | --- |
+| S1 | [Outcome] | planned |
+
+[Include every step in this table, including completed and unstarted steps.]
 
 ### S1 — [Outcome]
 - Status: planned
@@ -60,20 +66,22 @@ Do not leave template placeholders in a delivered plan. Use “unknown,” “no
 
 | Step status | Meaning |
 | --- | --- |
-| `planned` | Not started. |
+| `planned` | To do: not started. |
 | `in_progress` | Work started; completion criteria are not yet met. |
 | `awaiting_review` | Implementation and available checks are ready for the user's review; any required human acceptance is still pending. |
-| `completed` | Completion criteria met and the user approved the increment, or an explicit execution grant waived the intermediate review. |
+| `completed` | Done: completion criteria met and the user approved the increment, or an explicit execution grant waived the intermediate review. |
 | `blocked` | A concrete obstacle prevents completion. Record what is needed. |
 | `superseded` | An agreed plan change replaced this step. Preserve its identifier and disposition. |
 
 Record review separately: pending, user-approved, changes-requested, or waived under a specific grant. Never label an automatically continued step “user-approved.” A passing test or an elapsed wait is not user approval. A grant may waive intermediate review; it does not make failing checks pass.
 
+Every step must have exactly one current status, shown both in the progress table and its details. Initialize new, unstarted steps as `planned`, mark the authorized step `in_progress` before implementation, and update it as verification and review change its state. A blocked step or one awaiting review is not `completed`. Render labels in the user's or project's required language while preserving these meanings.
+
 ## Keep the plan current
 
 These updates apply to the working plan in the conversation or an explicitly requested separate plan document, never to the source backlog card. Do not append plan snapshots or a development history to that card.
 
-After a decision, meaningful implementation change, check result, or approval, update affected plan fields and the resume state. Preserve stable step IDs; do not silently renumber pending work or erase previous approvals. When changing a completed step's obligations, invalidate affected completion or evidence and explain what must be reverified.
+After a decision, meaningful implementation change, check result, or approval, update affected plan fields, the progress table, and the resume state together. Keep the status of every step visible, including work still to do and work already done; do not replace the complete progress table with only the active step. Preserve stable step IDs; do not silently renumber pending work or erase previous approvals. When changing a completed step's obligations, invalidate affected completion or evidence and explain what must be reverified.
 
 At every approval gate, pause, blocker, session end, or requested handoff, provide the complete current plan in a copyable form. A short progress message or a native list of step titles alone is not sufficient for resumption. Under an authorized multi-step batch, keep the working plan current after every step and present the full snapshot at the batch boundary rather than demanding intermediate approval.
 

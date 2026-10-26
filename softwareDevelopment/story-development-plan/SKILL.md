@@ -7,6 +7,12 @@ description: Interactively plan implementation of a specific story before coding
 
 Turn one story into a development plan the user can understand, review, change, and resume in another chat. Use a critical interview with a continuously updated plan as its document. Do not implement the story while planning.
 
+## Require native plan mode
+
+Enter the host's native plan mode automatically on invocation, before preparing or revising the plan, using its supported mode-switch mechanism when the agent can activate it. Activate it autonomously when possible, without asking for approval. If already active, including after a transition from `story-development`, remain there.
+
+If the agent cannot activate it or higher-priority session instructions prevent it, explain the limitation, ask the user to switch to native plan mode, and wait until the host confirms that mode is active. Do not prepare, revise, or present the development plan while waiting. Do not substitute a planning-only conversation for native plan mode, claim a switch that did not happen, or bypass host controls. If native plan mode is unavailable in the host, explain that the workflow cannot proceed there as requested.
+
 ## Establish the story and repository
 
 1. First ask which story to work on unless its text or an unambiguous reference is already provided. Accept pasted content or an accessible card, issue, or document. Do not substitute a guessed story or silently create one.
@@ -19,7 +25,7 @@ Use the source card's acceptance criteria as the basis for coverage. If it is a 
 
 ## Plan interactively within this story
 
-Use the host's native plan mode when available. If it cannot be activated by the agent, explain that the session remains planning-only and keep the plan in the conversation or available planning surface. Do not claim a mode switch that did not happen. No physical document, Notion page, or repository plan file is required; create one only if requested, following its destination's conventions.
+Keep native plan mode active throughout planning. No physical document, Notion page, or repository plan file is required; create one only if requested, following its destination's conventions.
 
 Keep this working plan separate from the source card, even when both are in Notion. Plan revisions, redirects, decisions, and handoff snapshots do not belong in the card. If card updates are authorized, limit story/task changes to necessary agreed requirement corrections while preserving their minimal description and AC or to-do list. Keep interim spike analysis outside the card; on completion, its body contains only a concise Output section with the result, or only links to created cards when those are the deliverable. Pass these boundaries to the implementation workflow.
 
@@ -40,6 +46,9 @@ Each step must have:
 - A link to the AC, task item, expected output, or necessary enabling work it addresses.
 - Explicit completion criteria and a proportionate verification method.
 - Relevant prerequisites and a review point that lets the user understand what changed and why.
+- An explicit current status: `planned` (to do), `in_progress`, or `completed` (done), with the additional review, blocked, and superseded states defined in the plan format when applicable. Never leave a step's status implicit or track only the active step.
+
+Include a compact progress table listing every step ID, outcome, and current status before the detailed increments. Initialize unstarted steps as `planned`; for resumed work, recover statuses from the actual code, evidence, and review decisions. Keep this table synchronized with the detailed steps throughout implementation and in every full plan snapshot. Render human-facing labels in the user's or project's required language.
 
 Prefer coherent behavior changes that include their relevant implementation and verification. Split steps when their combined behavior or diff would be difficult to review. Combine trivial edits when separating them would create ceremony without a useful checkpoint. Do not prescribe a fixed step count or turn each file, import, or command into a separate step.
 

@@ -1,11 +1,19 @@
 ---
 name: story-development
-description: Implement or resume a specific story in reviewable increments from an interactive development plan. Retrieve story and repository context first, keep the plan resumable and current, and require user approval between steps unless the user explicitly grants broader execution authority.
+description: Implement or resume a specific story by automatically entering plan mode first, then executing reviewable increments from an interactive development plan. Keep the plan resumable and current, and require user approval between steps unless the user explicitly grants broader execution authority.
 ---
 
 # Story Development
 
 Implement one story while preserving the user's understanding and ownership of the code. Work from a current, interactive plan. By default, execute only the authorized step and stop for user approval before the next one.
+
+## Enter plan mode automatically
+
+On invocation or resumption, enter the host's native plan mode before preparing or revising the plan, using its supported mode-switch mechanism when the agent can activate it. Activate it autonomously when possible, without asking for approval. If already in plan mode, continue there. This applies even when a plan exists: reconcile it with the current story, checkout, and execution authority before editing code.
+
+If the host does not expose an agent-controlled switch or higher-priority session instructions prevent it, state that limitation briefly, ask the user to switch to native plan mode, and wait until the host confirms that mode is active. Do not prepare, revise, or present the development plan, or begin implementation, while waiting. Do not substitute a planning-only conversation for native plan mode, claim a switch that did not happen, or bypass host controls. If native plan mode is unavailable in the host, explain that the workflow cannot proceed there as requested.
+
+Remain in planning until the plan is usable and execution is authorized. Then use the host's supported transition to implementation; if the host requires a user action to leave plan mode, explain the required action. Honor existing explicit execution authority without requesting it again. Entering plan mode does not itself approve the plan or authorize coding.
 
 ## Start with the story and current context
 
@@ -18,7 +26,7 @@ Implement one story while preserving the user's understanding and ownership of t
 
 If no sufficient plan exists, use the available `story-development-plan` skill before implementation. Pass the story and retrieved context. Invoke it through the host or locate and read its installed instructions; this is a transition in the same conversation, not a new chat or subagent. If it is unavailable, explain the missing dependency and do not claim to have used it.
 
-Planning must remain scoped to the single story and include critical questions about unresolved behavior, design choices, and validation. Use native plan mode where supported, or a planning-only conversational workflow otherwise. A physical document is optional; do not require a Notion page or repository file to begin.
+Planning must remain scoped to the single story and include critical questions about unresolved behavior, design choices, and validation. Keep native plan mode active throughout this phase, whether activated by the agent or the user. A physical document is optional; do not require a Notion page or repository file to begin.
 
 A usable plan contains a brief description, the scoped completion targets, repository and working-tree context, stable step IDs with outcomes and completion criteria, dependencies, validation evidence, statuses and review decisions, current decisions or blockers, and the exact next action and execution authority. If these are missing, resolve them before the affected work.
 
@@ -76,6 +84,8 @@ For authorized tracker updates, keep property names, card types, and status opti
 When tracker updates are authorized, keep story/task edits limited to necessary agreed requirement corrections, existing checklist items, and relevant properties. Preserve their brief description and AC or to-do structure. For a completed spike, save only one concise Output section summarizing the analysis result; if its deliverable is other cards, include only links to the cards actually created under that heading. Replace obsolete investigation content rather than appending a running report. Use the project's language and do not create output cards without authorization.
 
 Keep the plan synchronized after meaningful changes, check results, decisions, and approvals, including while executing an authorized batch. Use equivalent fields to the existing plan; do not replace a richer resumable plan with a native checklist that drops context.
+
+Track an explicit current status for every step, not only the active one. Keep a compact table of all step IDs, outcomes, and statuses synchronized with the detailed increments: `planned` means to do, `in_progress` means work is underway, and `completed` means done under the completion and approval rules above. Retain `awaiting_review`, `blocked`, and `superseded` when applicable so unfinished work is not presented as done. Update the table at each state transition and include it in every full plan snapshot, using the user's or project's language for human-facing labels.
 
 At every approval gate, pause, blocker, batch boundary, or session end, provide the full current plan in a copyable form. Include the brief description, story/AC snapshot, repository identity, branch and observed commit when available, relevant paths and uncommitted work, all steps and statuses, evidence and reviews, decisions, blockers, active/next step, remaining grant, and exact next action. Do not require a separate stored document or permission to create one merely to maintain this conversational plan.
 
