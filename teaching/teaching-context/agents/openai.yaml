@@ -1,0 +1,4 @@
+interface:
+  display_name: "Teaching Context"
+  short_description: "Resolve School context for teaching workflows"
+  default_prompt: "Use $teaching-context to retrieve the relevant teaching material from School in Notion."

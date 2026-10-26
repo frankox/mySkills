@@ -24,17 +24,25 @@ mySkills/
 │       ├── SKILL.md
 │       ├── agents/openai.yaml
 │       └── references/documentation-guide.md
-└── softwareDevelopment/
-    ├── story-development-plan/
+├── softwareDevelopment/
+│   ├── story-development-plan/
+│   │   ├── SKILL.md
+│   │   ├── agents/openai.yaml
+│   │   └── references/development-plan.md
+│   └── story-development/
+│       ├── SKILL.md
+│       └── agents/openai.yaml
+└── teaching/
+    ├── teaching-context/
     │   ├── SKILL.md
-    │   ├── agents/openai.yaml
-    │   └── references/development-plan.md
-    └── story-development/
+    │   └── agents/openai.yaml
+    └── teaching-assessment/
         ├── SKILL.md
-        └── agents/openai.yaml
+        ├── agents/openai.yaml
+        └── references/onlitest-handoff.md
 ```
 
-`projectManagement/` contains skills for project documentation, backlog story creation, prototyping, project definition, and related workflows. `softwareDevelopment/` contains skills for planning and implementing stories. Add other top-level folders as new domains are introduced. Each skill may also include `scripts/`, `references/`, or `assets/` when needed.
+`projectManagement/` contains skills for project documentation, backlog story creation, prototyping, project definition, and related workflows. `softwareDevelopment/` contains skills for planning and implementing stories. `teaching/` contains shared teaching context and assessment preparation workflows. Add other top-level folders as new domains are introduced. Each skill may also include `scripts/`, `references/`, or `assets/` when needed.
 
 Each `SKILL.md` describes the skill's purpose, when to use it, and how to perform the workflow. The format follows the open Agent Skills standard, also used by [Codex](https://learn.chatgpt.com/docs/build-skills).
 
@@ -57,8 +65,16 @@ To keep the collection consistent and portable:
 | Project management | [Project-Documentation](projectManagement/Project-Documentation/SKILL.md) | Continue refinement while updating concise, contextual documentation in Notion or an existing repository. |
 | Software development | [Story Development Plan](softwareDevelopment/story-development-plan/SKILL.md) | Interactively plan one story as reviewable increments with clear completion criteria and resumable state. |
 | Software development | [Story Development](softwareDevelopment/story-development/SKILL.md) | Implement and resume a story one approved increment at a time, keeping the development plan current. |
+| Teaching | [Teaching Context](teaching/teaching-context/SKILL.md) | Resolve School in Notion and retrieve concepts, lessons, and assessments for specialized teaching workflows. |
+| Teaching | [Teaching Assessment](teaching/teaching-assessment/SKILL.md) | Collaboratively prepare practical assessments with increasing difficulty, a common route to 6/10, and an evaluation table. |
 
-The portable identifiers match the `name` fields in each `SKILL.md`: `notion-story-creation`, `project-definition`, `project-documentation`, `story-development-plan`, and `story-development`. The Notion workflows require access to the target project through a Notion connector or equivalent integration; documentation and development in a repository require access to that repository and its relevant tools.
+The portable identifiers match the `name` fields in each `SKILL.md`: `notion-story-creation`, `project-definition`, `project-documentation`, `story-development-plan`, `story-development`, `teaching-context`, and `teaching-assessment`. The Notion workflows require access to the target project or teaching area through a Notion connector or equivalent integration; documentation and development in a repository require access to that repository and its relevant tools.
+
+Teaching Context is the shared dependency for teaching workflows. The teacher has confirmed that School is the Notion wiki titled Scuola; the skill records its verified root and data source and discovers the current hierarchy for concepts, lessons, and assessments without assuming database names. Teaching Assessment requires this skill alongside it. It asks for missing subject and topics, retrieves the relevant lessons, and requests material directly from the teacher when lessons cannot be found. It then enters native plan mode autonomously when the host permits it and designs the assessment interactively. If the agent cannot switch modes, it explains the limitation and waits for the teacher to activate native plan mode; a host without that mode cannot run the workflow as specified.
+
+Assessments use one common version and common mastery criteria while preserving teacher-supplied access arrangements, including those in a PDP. Preliminary theory plus one very simple practical exercise provides the route to 6/10; progressively harder practical tasks provide evidence for higher grades. Practical work dominates points and expected time. Every assessment includes an evaluation table and an explicit grade conversion, preferably with a total score that is a multiple of 10. Generated assessments follow the teacher's or destination project's language.
+
+Teaching Assessment explicitly asks whether to use Onlitest. If selected, it proposes a self-contained, copy-ready template for the Onlitest chatbot with the agreed tasks, taught scope, scoring, correction key, and delivery constraints. Planning also resolves the actual Verifiche destination and maps assessment metadata to its current Notion properties. Moving from the agreed plan to implementation includes creating and verifying the assessment page in Verifiche, with applicable writable properties correctly populated, without a separate save approval. The page also contains the chatbot handoff when selected; creating or publishing an assessment in Onlitest itself requires a separate request.
 
 Backlog cards stay minimal throughout development. Stories and tasks retain their brief description and AC or to-do list; development plans, redirects, progress, and handoff state stay outside the card. A completed spike contains only a concise Output section summarizing the result. If its deliverable is other cards, that section contains only links to the cards created.
 

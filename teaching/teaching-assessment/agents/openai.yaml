@@ -1,0 +1,4 @@
+interface:
+  display_name: "Teaching Assessment"
+  short_description: "Plan practical assessments with a common rubric"
+  default_prompt: "Use $teaching-assessment to prepare a progressively harder assessment based on my lessons in School."
