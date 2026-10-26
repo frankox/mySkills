@@ -16,7 +16,9 @@ Use this guide after choosing the destination and recovering its current context
 
 - Fetch the chosen parent or database, relevant linked documents, representative nearby pages, and applicable templates or properties. Confirm the project relation and source of truth where relevant.
 - Match the area's page hierarchy, language, headings, blocks, property values, and link conventions. Use native blocks where supported and do not invent database fields or change the schema automatically.
+- For backlog cards, property names and categorical option labels must be in English, including the types `story`, `task`, and `spike` and the status property and all its options. Keep status values in English during creation and subsequent transitions, reusing the existing English workflow. Titles, body text, and free-text content follow the project's language; preserve proper names and relation targets. Resolve conflicting non-English schema labels with the user before changing shared fields or writing cards.
 - Update the canonical page or section when it already covers the topic. Create a child page or database entry only for a real documentation gap in the chosen destination.
+- Treat backlog cards separately from project documentation: preserve minimal story/task descriptions and AC or to-do lists; do not add progress or planning history. A completed spike contains only a concise Output section with the result, or only links to created cards when those are the deliverable. Do not apply continuous documentation updates to card bodies.
 - If the area has no clear convention, agree on the minimal page placement and structure before creating it. If a create or update response is ambiguous, fetch or search before retrying to avoid duplicates.
 
 ## Keep meaning while minimizing tokens

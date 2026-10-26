@@ -5,12 +5,12 @@ description: Create or draft Notion project backlog cards as stories, tasks, or 
 
 # Notion-Story-Creation
 
-Create concise, actionable Notion cards using exactly one type: `story`, `task`, or `spike`. Follow the structure for that type and the language of the destination Notion project.
+Create concise, actionable Notion cards using exactly one type: `story`, `task`, or `spike`. Keep property names and categorical option labels in English, including card types and status names and values. Write the title and body in the language of the destination Notion project.
 
 ## Resolve context before execution
 
 1. Identify the target project and destination page or database from the request and available Notion context. Use the available Notion connector or equivalent integration to read the project, relevant requirements, representative existing cards, and destination properties and allowed values. Do not hardcode workspace IDs, property names, or tool names.
-2. Establish the project's language from its documented convention or consistent existing project content. Write the card title, description, headings, scenario text, acceptance criteria, expected outputs, and checklist in that language. Follow existing conventions for labels such as AC and Given/When/Then; retain literal identifiers and required database option values. Do not infer the project language solely from the user's message or these English instructions.
+2. Establish the project's language from its documented convention or consistent existing project content. Write the card title, description, headings, scenario text, acceptance criteria, expected outputs, and checklist in that language. Follow existing conventions for labels such as AC and Given/When/Then. Property names and categorical option labels must remain in English regardless of the project's language; use `story`, `task`, and `spike` for card types. Preserve proper names, literal identifiers, and relation targets; do not translate free-text content merely because it is stored in a property. Do not infer the project language solely from the user's message or these English instructions.
 3. Determine the type using the rules below. If the request does not make the type clear, ask the user to choose `story`, `task`, or `spike`.
 4. Resolve every remaining uncertainty before execution. Ask concise questions about anything ambiguous, missing, or contradictory, including destination, language, scope, behavior, criteria, expected output, or database mapping. Read-only investigation may continue, but do not create or modify a card, or finalize a draft based on unresolved assumptions. If project context is inaccessible, ask for access or the missing information rather than guessing.
 
@@ -81,11 +81,21 @@ Briefly explain the activity and the problem it solves or why it is necessary. F
 
 Do not replace the task checklist with user-facing acceptance criteria.
 
+## Keep cards minimal throughout their lifecycle
+
+Cards are quick-reading backlog items, not development journals or resumable plans. Apply these rules when creating a card and pass them to any planning, implementation, or documentation workflow that continues the work:
+
+- **Story and task:** preserve the brief description and AC or to-do list. During development, edit only what an agreed change to requirements makes necessary; update existing checklist items or properties when tracker updates are authorized. Do not append progress reports, redirects, intermediate decisions, implementation steps, test logs, approval history, or handoff snapshots.
+- **Spike before completion:** use the investigation question and expected output above to define the work. Keep interim analysis in the conversation or a separately requested analysis document, not in the card.
+- **Completed spike:** replace the investigation brief and expected output with a single **Output** section containing only a short summary of the analysis result, including the conclusion or recommendation and any limitation essential to interpreting it. Do not retain the investigation process or intermediate findings. If the deliverable is other cards, the body must contain only **Output** and links to the cards actually created; do not duplicate their content or add an analysis narrative. Translate the heading to the project's language.
+
+Update an existing section in place rather than appending another summary. A workflow transition, redirect, tool action, or plan revision is not a reason to modify the card. A request to create a card does not authorize future tracker updates or creation of additional output cards.
+
 ## Create and verify the Notion card
 
 1. Prepare a short, specific title and the body for the selected type. Keep the required sections concise; do not add unrelated sections by default.
-2. Set the type explicitly using the destination's existing type property and allowed option corresponding to `story`, `task`, or `spike`. Preserve exact schema values, including their language and capitalization. If no suitable property or option exists, or the mapping is uncertain, ask how the type should be represented before writing. Do not change the database schema automatically. For a destination without database properties, agree on an explicit type label with the user.
-3. Use the established project relation or parent destination. Set additional properties only when supplied by the user or unambiguously established by project conventions. Do not invent an owner, priority, status, estimate, or deadline.
+2. Set the type explicitly using the destination's English type property and the option `story`, `task`, or `spike`. Reuse existing English property names and option labels, preserving their capitalization. If the schema uses non-English property names or categorical labels, lacks a suitable option, or has an uncertain mapping, resolve the English schema change with the user before writing; do not silently retain localized labels, create duplicate properties, or rename shared database fields. For a destination without database properties, use an explicit English type label.
+3. Use the established project relation or parent destination. Set additional properties only when supplied by the user or unambiguously established by project conventions. The status property name and every status option must be in English, regardless of the project's content language; reuse the destination's existing English workflow values rather than inventing a new workflow. Apply this rule to later status transitions as well as creation. Resolve non-English status schema labels as described above before writing. Do not invent an owner, priority, status, estimate, or deadline.
 4. Create the card only after all uncertainties are resolved. Use native headings and checkboxes when supported. If a matching card already exists and the intended action is unclear, ask before duplicating or updating it.
-5. Verify the resulting card's destination, title, explicit type, language, required body sections, and checklist or AC formatting. If a write returns an uncertain result, check whether it succeeded before retrying to avoid duplicates.
+5. Verify the resulting card's destination, title, explicit English type, English property names and categorical labels, project-language content, required body sections, and checklist or AC formatting. If a write returns an uncertain result, check whether it succeeded before retrying to avoid duplicates.
 6. Return the card link and its type, and report any verification failure accurately. For draft-only work, return the title, explicit type, and formatted body without creating a Notion page.

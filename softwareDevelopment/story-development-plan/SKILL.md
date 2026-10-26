@@ -21,6 +21,8 @@ Use the source card's acceptance criteria as the basis for coverage. If it is a 
 
 Use the host's native plan mode when available. If it cannot be activated by the agent, explain that the session remains planning-only and keep the plan in the conversation or available planning surface. Do not claim a mode switch that did not happen. No physical document, Notion page, or repository plan file is required; create one only if requested, following its destination's conventions.
 
+Keep this working plan separate from the source card, even when both are in Notion. Plan revisions, redirects, decisions, and handoff snapshots do not belong in the card. If card updates are authorized, limit story/task changes to necessary agreed requirement corrections while preserving their minimal description and AC or to-do list. Keep interim spike analysis outside the card; on completion, its body contains only a concise Output section with the result, or only links to created cards when those are the deliverable. Pass these boundaries to the implementation workflow.
+
 - State the story-specific objective and exclusions. The analysis depth is implementation planning for this story, not general project exploration.
 - Ask the questions needed to settle behavior, implementation choices, dependencies, relevant edge cases, and validation. Usually ask one focused question at a time; group up to three independent questions when useful. Wait for decisions before dependent follow-ups.
 - Challenge weak assumptions and contradictions. Offer a reasoned recommendation or useful options without treating an unanswered proposal as agreement.

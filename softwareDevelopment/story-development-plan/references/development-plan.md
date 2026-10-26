@@ -71,6 +71,8 @@ Record review separately: pending, user-approved, changes-requested, or waived u
 
 ## Keep the plan current
 
+These updates apply to the working plan in the conversation or an explicitly requested separate plan document, never to the source backlog card. Do not append plan snapshots or a development history to that card.
+
 After a decision, meaningful implementation change, check result, or approval, update affected plan fields and the resume state. Preserve stable step IDs; do not silently renumber pending work or erase previous approvals. When changing a completed step's obligations, invalidate affected completion or evidence and explain what must be reverified.
 
 At every approval gate, pause, blocker, session end, or requested handoff, provide the complete current plan in a copyable form. A short progress message or a native list of step titles alone is not sufficient for resumption. Under an authorized multi-step batch, keep the working plan current after every step and present the full snapshot at the batch boundary rather than demanding intermediate approval.

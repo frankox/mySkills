@@ -41,7 +41,7 @@ Each `SKILL.md` describes the skill's purpose, when to use it, and how to perfor
 To keep the collection consistent and portable:
 
 - Write the README and all skills in English, including metadata, instructions, and supporting documentation.
-- Write generated artifacts in the language required by their destination project or the user. For example, Notion cards follow the language of their Notion project.
+- Write generated artifacts in the language required by their destination project or the user. Notion card titles and bodies follow the project's language; property names and categorical option labels stay in English, including the types `story`, `task`, and `spike` and all status values, both at creation and during later updates.
 - Place every skill under its domain folder rather than directly at the repository root.
 - Use unique, descriptive skill names.
 - Keep instructions and required resources together, using relative paths.
@@ -59,6 +59,8 @@ To keep the collection consistent and portable:
 | Software development | [Story Development](softwareDevelopment/story-development/SKILL.md) | Implement and resume a story one approved increment at a time, keeping the development plan current. |
 
 The portable identifiers match the `name` fields in each `SKILL.md`: `notion-story-creation`, `project-definition`, `project-documentation`, `story-development-plan`, and `story-development`. The Notion workflows require access to the target project through a Notion connector or equivalent integration; documentation and development in a repository require access to that repository and its relevant tools.
+
+Backlog cards stay minimal throughout development. Stories and tasks retain their brief description and AC or to-do list; development plans, redirects, progress, and handoff state stay outside the card. A completed spike contains only a concise Output section summarizing the result. If its deliverable is other cards, that section contains only links to the cards created.
 
 Project-Definition asks for analysis depth before substantive questions and establishes a precise scope. Both project skills ask before changing either boundary. Once the idea is sufficiently defined, Project-Definition asks whether to begin documentation and, if accepted, hands the current context to Project-Documentation. The latter first resolves where to save, reads existing context, and updates canonical documentation using local conventions. Specialized deliverables go to suitable available skills.
 

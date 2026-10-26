@@ -69,6 +69,12 @@ If the plan is split, merged, or materially changed, reconcile any bounded grant
 
 ## Preserve resumability and finish accurately
 
+Keep the development plan separate from the source card. Maintain implementation details, redirects, decisions, checks, approvals, and resume snapshots in the conversation or an explicitly requested separate plan document. Never copy or synchronize that working record into the card, including at skill transitions or review checkpoints.
+
+For authorized tracker updates, keep property names, card types, and status options in English. Reuse existing English status values for every transition; if the schema uses non-English labels, resolve the schema change with the user before writing rather than renaming shared fields automatically.
+
+When tracker updates are authorized, keep story/task edits limited to necessary agreed requirement corrections, existing checklist items, and relevant properties. Preserve their brief description and AC or to-do structure. For a completed spike, save only one concise Output section summarizing the analysis result; if its deliverable is other cards, include only links to the cards actually created under that heading. Replace obsolete investigation content rather than appending a running report. Use the project's language and do not create output cards without authorization.
+
 Keep the plan synchronized after meaningful changes, check results, decisions, and approvals, including while executing an authorized batch. Use equivalent fields to the existing plan; do not replace a richer resumable plan with a native checklist that drops context.
 
 At every approval gate, pause, blocker, batch boundary, or session end, provide the full current plan in a copyable form. Include the brief description, story/AC snapshot, repository identity, branch and observed commit when available, relevant paths and uncommitted work, all steps and statuses, evidence and reviews, decisions, blockers, active/next step, remaining grant, and exact next action. Do not require a separate stored document or permission to create one merely to maintain this conversational plan.

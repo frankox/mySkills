@@ -53,6 +53,8 @@ Maintain the smallest coherent set of documents that preserves the meaning of th
 
 After a meaningful decision, correction, or resolved topic, update the affected canonical section or pass the change to its specialist. Write deltas rather than rewriting unrelated content. Do not persist every message or duplicate the transcript. If nothing materially changed, do not write.
 
+Backlog cards are not the destination for this continuous documentation. Keep story/task cards minimal: only a brief description and AC or to-do list, with necessary agreed corrections and authorized checklist or property updates. Do not append redirects, progress, intermediate decisions, plans, or handoff state. Keep interim spike analysis in the conversation or separately requested documentation. When authorized to record a completed spike, replace its body with a concise Output section describing only the result; if the deliverable is other cards, include only links to the cards actually created. Use the project's language. A documentation handoff does not itself authorize card edits or additional card creation.
+
 Capture only information useful for the objective: the definition, scope and exclusions, relevant outcomes or behaviors, decisions and essential rationale, constraints, and material open questions. Omit irrelevant categories and empty template sections. Do not remove important qualifiers or uncertainty to save tokens.
 
 Keep terms stable, link to existing definitions instead of repeating them, and make confirmed facts, proposed changes, assumptions, and open decisions distinguishable. Prefer compact natural language over cryptic shorthand. A shorter document that changes the meaning is not an improvement.
