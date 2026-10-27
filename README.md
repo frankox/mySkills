@@ -60,11 +60,11 @@ To keep the collection consistent and portable:
 
 | Domain | Skill | Purpose |
 | --- | --- | --- |
-| Project management | [Notion-Story-Creation](projectManagement/Notion-Story-Creation/SKILL.md) | Create Notion cards as stories with Given/When/Then acceptance criteria, spikes with expected outputs, or tasks with to-do lists. |
+| Project management | [Notion-Story-Creation](projectManagement/Notion-Story-Creation/SKILL.md) | Create Notion cards as stories with named scenarios or standalone AC blocks and GIVEN/WHEN/THEN/AND clauses, spikes with expected outputs, or tasks with to-do lists. |
 | Project management | [Project-Definition](projectManagement/Project-Definition/SKILL.md) | Refine ideas through a critical interview with explicit scope and depth, then offer a documentation handoff. |
 | Project management | [Project-Documentation](projectManagement/Project-Documentation/SKILL.md) | Continue refinement while updating concise, contextual documentation in Notion or an existing repository. |
 | Software development | [Story Development Plan](softwareDevelopment/story-development-plan/SKILL.md) | Interactively plan one story as reviewable increments with clear completion criteria and resumable state. |
-| Software development | [Story Development](softwareDevelopment/story-development/SKILL.md) | Implement and resume a story one approved increment at a time, keeping the development plan current. |
+| Software development | [Story Development](softwareDevelopment/story-development/SKILL.md) | Implement and resume a story one approved increment at a time, keeping the development plan and source card status current. |
 | Teaching | [Teaching Context](teaching/teaching-context/SKILL.md) | Resolve School in Notion and retrieve concepts, lessons, and assessments for specialized teaching workflows. |
 | Teaching | [Teaching Assessment](teaching/teaching-assessment/SKILL.md) | Collaboratively prepare practical assessments with increasing difficulty, a common route to 6/10, and an evaluation table. |
 
@@ -77,6 +77,8 @@ Assessments use one common version and common mastery criteria while preserving 
 Teaching Assessment explicitly asks whether to use Onlitest. If selected, it proposes a self-contained, copy-ready template for the Onlitest chatbot with the agreed tasks, taught scope, scoring, correction key, and delivery constraints. Planning also resolves the actual Verifiche destination and maps assessment metadata to its current Notion properties. Moving from the agreed plan to implementation includes creating and verifying the assessment page in Verifiche, with applicable writable properties correctly populated, without a separate save approval. The page also contains the chatbot handoff when selected; creating or publishing an assessment in Onlitest itself requires a separate request.
 
 Backlog cards stay minimal throughout development. Stories and tasks retain their brief description and AC or to-do list; development plans, redirects, progress, and handoff state stay outside the card. A completed spike contains only a concise Output section summarizing the result. If its deliverable is other cards, that section contains only links to the cards created.
+
+Story Development manages the source card's status as part of execution, using the destination's existing English workflow values without separate approval for each transition. Planning preserves the current status; authorized implementation activates the card; final pending review and concrete blockers use matching statuses when available; completion requires all work, checks, and applicable final approval. Individual step checkpoints do not complete the whole card. Saved transitions are verified, and unavailable or failed tracker updates remain explicit in the resume state.
 
 Project-Definition asks for analysis depth before substantive questions and establishes a precise scope. Both project skills ask before changing either boundary. Once the idea is sufficiently defined, Project-Definition asks whether to begin documentation and, if accepted, hands the current context to Project-Documentation. The latter first resolves where to save, reads existing context, and updates canonical documentation using local conventions. Specialized deliverables go to suitable available skills.
 

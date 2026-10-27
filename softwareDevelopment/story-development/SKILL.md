@@ -1,6 +1,6 @@
 ---
 name: story-development
-description: Implement or resume a specific story by automatically entering plan mode first, then executing reviewable increments from an interactive development plan. Keep the plan resumable and current, and require user approval between steps unless the user explicitly grants broader execution authority.
+description: Implement or resume a specific story by automatically entering plan mode first, then executing reviewable increments from an interactive development plan. Keep the plan and source card status current, and require user approval between steps unless the user explicitly grants broader execution authority.
 ---
 
 # Story Development
@@ -67,6 +67,24 @@ Show enough concrete evidence for the user to understand and challenge the code 
 
 When the user requests changes during review, keep work on the current step, update the plan, and reverify affected criteria before presenting it again. User approval does not override objective completion criteria; record any explicitly agreed change to those criteria as a plan revision.
 
+## Manage the source card status
+
+When the story, task, or spike has a source tracker card, maintaining its status is part of this workflow and does not require separate permission at each transition. Honor an explicit request to leave the tracker unchanged. This authority covers the source card's status only, not unrelated cards or other properties.
+
+Read the card's current status, the destination's available status options, and established workflow conventions before writing. Map the lifecycle below to existing English values; the example labels are meanings to match, not values to create. Do not create or rename status options or shared properties. If the mapping is ambiguous or labels are non-English, resolve it with the user before the affected write. For pasted stories without a tracker card, keep status in the plan and do not create a card merely to track it.
+
+| Lifecycle event | Source card status |
+| --- | --- |
+| Context retrieval or planning only | Preserve the current status. |
+| First authorized implementation starts, or work resumes after a blocker or requested changes | Use the existing active-work status, such as `In Progress`. |
+| All story work and available checks are ready, but final user review or acceptance remains | Use the existing review status, such as `In Review`; if none exists, retain the active-work status and record pending review in the plan. |
+| A concrete obstacle prevents further story work | Use the existing blocked status if available; otherwise retain the active status and record the blocker in the plan. |
+| All completion targets, required checks, and required final approval are satisfied | Use the existing completed status, such as `Done`. An explicit grant may waive review only within its recorded scope. |
+
+Track the card as a whole: an individual step entering review or completing does not put an unfinished story in review or mark it done. Routine approval gates, session boundaries, and pauses are not blockers. Never mark the card done while required work, checks, or final acceptance remain pending.
+
+Apply each transition at the corresponding checkpoint, skip writes when the card already has the correct status, and verify the saved value through the connector response or a read-back. On resumption, reconcile the live status with the plan and actual work; resolve conflicting external changes before overwriting them. If tracker access or a write fails, report the unsaved transition and retain it in the resume state without claiming synchronization. Continue otherwise authorized work when that failure does not block implementation.
+
 ## Adapt the plan during implementation
 
 Treat user feedback and new evidence as inputs to a living plan. Before affected implementation, update decisions, dependencies, step boundaries, coverage, and verification requirements. Explain material revisions and resolve them with the user; do not silently expand the plan under an old approval.
@@ -91,4 +109,4 @@ At every approval gate, pause, blocker, batch boundary, or session end, provide 
 
 When resuming in another chat, first compare that snapshot with the actual checkout and current story. A pasted plan does not transfer source changes; recover missing code or ask for it rather than recreating work from an unsupported status.
 
-When all increments meet their criteria, check overall story coverage and relevant integration behavior. Distinguish technically complete work from pending user review. Without a broader grant, the final increment also requires approval before declaring the story complete. Report remaining gaps honestly and leave the final plan ready to copy. Do not infer authorization to commit, push, deploy, or change the story tracker from completion of coding alone.
+When all increments meet their criteria, check overall story coverage and relevant integration behavior. Distinguish technically complete work from pending user review. Without a broader grant, the final increment also requires approval before declaring the story complete. Update the source card status under the lifecycle rules above, report remaining gaps honestly, and leave the final plan ready to copy. Do not infer authorization to commit, push, deploy, or make unrelated tracker edits from completion of coding alone.
