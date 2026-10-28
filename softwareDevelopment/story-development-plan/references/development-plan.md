@@ -58,6 +58,7 @@ Use this structure as a compact default. Preserve a supplied plan's equivalent s
 - Grant remaining: [Authorized step IDs or none.]
 - Last approval / review: [What the user actually approved, or none.]
 - Next action: [The precise authorized action or approval question.]
+- Displayed plan: [Existing artifact reference and latest verified revision, when available; otherwise unavailable or not applicable.]
 ```
 
 Do not leave template placeholders in a delivered plan. Use “unknown,” “not run,” or “not applicable” where accurate, and ask when an unknown blocks the next action. Add fields only when they help implementation or resumption.
@@ -82,6 +83,8 @@ Every step must have exactly one current status, shown both in the progress tabl
 These updates apply to the working plan in the conversation or an explicitly requested separate plan document, never to the source backlog card. Do not append plan snapshots or a development history to that card.
 
 After a decision, meaningful implementation change, check result, or approval, update affected plan fields, the progress table, and the resume state together. Keep the status of every step visible, including work still to do and work already done; do not replace the complete progress table with only the active step. Preserve stable step IDs; do not silently renumber pending work or erase previous approvals. When changing a completed step's obligations, invalidate affected completion or evidence and explain what must be reverified.
+
+When an existing side view or connected document displays the plan, persist those updates to the same artifact using the host's supported editing tool and verify the saved content or revision. Preserve its identity across planning and execution. Routine execution bookkeeping continues outside plan mode; a chat snapshot or separate checklist is not evidence that the side view changed. Record any failed or unavailable synchronization in the resume state and provide the current conversational snapshot without claiming that the displayed copy is current.
 
 At every approval gate, pause, blocker, session end, or requested handoff, provide the complete current plan in a copyable form. A short progress message or a native list of step titles alone is not sufficient for resumption. Under an authorized multi-step batch, keep the working plan current after every step and present the full snapshot at the batch boundary rather than demanding intermediate approval.
 

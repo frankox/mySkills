@@ -27,6 +27,8 @@ Use the source card's acceptance criteria as the basis for coverage. If it is a 
 
 Keep native plan mode active throughout planning. No physical document, Notion page, or repository plan file is required; create one only if requested, following its destination's conventions.
 
+If the plan already exists in a side panel, canvas, or connected document, read and update that same artifact through the host's supported editing tool instead of maintaining a divergent chat-only copy. Preserve user edits and verify each saved update. Keep its artifact identity and latest verified revision in the resume state when available, and pass them to `story-development` so execution updates the same plan after leaving plan mode. If the artifact is unavailable or cannot be edited, report that the displayed version is not synchronized and provide the current plan in the conversation; do not claim that a chat response updated the side view.
+
 Keep this working plan separate from the source card, even when both are in Notion. Plan revisions, redirects, decisions, and handoff snapshots do not belong in the card. If card updates are authorized, limit story/task changes to necessary agreed requirement corrections while preserving their minimal description and AC or to-do list. Keep interim spike analysis outside the card; on completion, its body contains only a concise Output section with the result, or only links to created cards when those are the deliverable. Pass these boundaries to the implementation workflow.
 
 - State the story-specific objective and exclusions. The analysis depth is implementation planning for this story, not general project exploration.
