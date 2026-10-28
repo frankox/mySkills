@@ -1,19 +1,19 @@
 ---
 name: story-development
-description: Implement or resume a specific story by automatically entering plan mode first, then executing reviewable increments from an interactive development plan. Keep the plan and source card status current, and require user approval between steps unless the user explicitly grants broader execution authority.
+description: Implement or resume a specific story by using plan mode for initial planning when no plan exists, then executing reviewable increments from an interactive development plan. Keep the plan and source card status current, and require user approval between steps unless the user explicitly grants broader execution authority.
 ---
 
 # Story Development
 
 Implement one story while preserving the user's understanding and ownership of the code. Work from a current, interactive plan. By default, execute only the authorized step and stop for user approval before the next one.
 
-## Enter plan mode automatically
+## Use plan mode for initial planning only
 
-On invocation or resumption, enter the host's native plan mode before preparing or revising the plan, using its supported mode-switch mechanism when the agent can activate it. Activate it autonomously when possible, without asking for approval. If already in plan mode, continue there. This applies even when a plan exists: reconcile it with the current story, checkout, and execution authority before editing code.
+When no development plan exists, enter the host's native plan mode before creating the initial plan, using its supported mode-switch mechanism when available. If the agent cannot switch modes, explain the limitation and ask the user to activate it for initial planning. Do not claim a switch that did not happen or bypass host controls. If native plan mode is unavailable, explain that initial planning cannot proceed as specified.
 
-If the host does not expose an agent-controlled switch or higher-priority session instructions prevent it, state that limitation briefly, ask the user to switch to native plan mode, and wait until the host confirms that mode is active. Do not prepare, revise, or present the development plan, or begin implementation, while waiting. Do not substitute a planning-only conversation for native plan mode, claim a switch that did not happen, or bypass host controls. If native plan mode is unavailable in the host, explain that the workflow cannot proceed there as requested.
+When a plan already exists, including on resumption or transition from `story-development-plan`, reconcile it with the current story, checkout, and execution authority in the current mode. Do not require the user to re-enter plan mode to review, complete, or revise that plan. During execution, update it on the go as feedback and evidence arrive, including changes to decisions, dependencies, step boundaries, and verification methods. Plan editing and execution approval are separate: a revision does not authorize additional work.
 
-Remain in planning until the plan is usable and execution is authorized. Then use the host's supported transition to implementation; if the host requires a user action to leave plan mode, explain the required action. Honor existing explicit execution authority without requesting it again. Entering plan mode does not itself approve the plan or authorize coding.
+After initial planning, use the host's supported transition to implementation once the plan is usable and execution is authorized; explain any required user action to leave plan mode. Honor existing explicit execution authority without requesting it again. If the user explicitly requests a return to plan mode, follow that request through the host's supported controls. Higher-priority mode restrictions always apply.
 
 ## Start with the story and current context
 
@@ -24,9 +24,9 @@ Remain in planning until the plan is usable and execution is authorized. Then us
 
 ## Obtain an interactive development plan
 
-If no sufficient plan exists, use the available `story-development-plan` skill before implementation. Pass the story and retrieved context. Invoke it through the host or locate and read its installed instructions; this is a transition in the same conversation, not a new chat or subagent. If it is unavailable, explain the missing dependency and do not claim to have used it.
+If no plan exists, use the available `story-development-plan` skill for initial planning before implementation. If an existing plan needs clarification or revision, update it in the current mode, using that skill’s planning guidance when helpful without triggering its initial-plan mode requirement. Pass the story and retrieved context. Invoke it through the host or locate and read its installed instructions; this is a transition in the same conversation, not a new chat or subagent. If it is unavailable, explain the missing dependency and do not claim to have used it.
 
-Planning must remain scoped to the single story and include critical questions about unresolved behavior, design choices, and validation. Keep native plan mode active throughout this phase, whether activated by the agent or the user. A physical document is optional; do not require a Notion page or repository file to begin.
+Planning must remain scoped to the single story and include critical questions about unresolved behavior, design choices, and validation. Keep native plan mode active during initial plan creation; existing-plan revisions may take place in the current execution mode. A physical document is optional; do not require a Notion page or repository file to begin.
 
 A usable plan contains a brief description, the scoped completion targets, repository and working-tree context, stable step IDs with outcomes and completion criteria, dependencies, validation evidence, statuses and review decisions, current decisions or blockers, and the exact next action and execution authority. If these are missing, resolve them before the affected work.
 
@@ -87,7 +87,7 @@ Apply each transition at the corresponding checkpoint, skip writes when the card
 
 ## Adapt the plan during implementation
 
-Treat user feedback and new evidence as inputs to a living plan. Before affected implementation, update decisions, dependencies, step boundaries, coverage, and verification requirements. Explain material revisions and resolve them with the user; do not silently expand the plan under an old approval.
+Revise the existing plan directly in the current mode as user feedback and new evidence arrive; do not ask the user to enter plan mode for these revisions. Before affected implementation, update decisions, dependencies, step boundaries, coverage, and verification requirements. Explain material revisions and resolve them with the user; do not silently expand the plan under an old approval.
 
 Keep stable step IDs. Add new IDs or mark replaced steps `superseded` instead of renumbering away history. Invalidate stale evidence when changes affect previously verified work. Retain the distinction between proposed choices and accepted decisions.
 
@@ -105,7 +105,7 @@ Keep the plan synchronized after meaningful changes, check results, decisions, a
 
 If the development plan is already displayed in a side panel, canvas, or connected document, update that same artifact in place through the host's supported editing tool at every plan checkpoint, including during execution outside plan mode. Read the current artifact before editing, preserve user edits, and verify the saved content or returned revision. Updating chat text or a separate progress checklist alone does not establish that the displayed plan was updated. Retain the artifact's identity and latest verified revision in the resume state when available, and pass them across skill transitions; do not create a replacement merely because the mode changed.
 
-Routine updates to step status, evidence, approvals, and next action are execution bookkeeping and do not require re-entering plan mode. Material replanning still follows the planning and approval rules above. Use only editing capabilities actually exposed by the host; do not invent tool calls or assume that plan mode controls artifact persistence. If the displayed plan cannot be accessed or edited, or verification fails, explicitly say that the side view remains unverified or stale and provide the complete current plan in the conversation. Do not claim synchronization or block otherwise authorized implementation solely because that view could not be updated.
+Both routine progress updates and substantive revisions to an existing plan happen in the current mode without requiring re-entry into plan mode. Material changes still require the applicable scope decisions and execution approvals above, which can be resolved in the current conversation. Use only editing capabilities actually exposed by the host; do not invent tool calls or assume that plan mode controls artifact persistence. If the displayed plan cannot be accessed or edited, or verification fails, explicitly say that the side view remains unverified or stale and provide the complete current plan in the conversation. Do not claim synchronization or block otherwise authorized implementation solely because that view could not be updated.
 
 Track an explicit current status for every step, not only the active one. Keep a compact table of all step IDs, outcomes, and statuses synchronized with the detailed increments: `planned` means to do, `in_progress` means work is underway, and `completed` means done under the completion and approval rules above. Retain `awaiting_review`, `blocked`, and `superseded` when applicable so unfinished work is not presented as done. Update the table at each state transition and include it in every full plan snapshot, using the user's or project's language for human-facing labels.
 

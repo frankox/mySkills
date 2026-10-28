@@ -7,11 +7,11 @@ description: Interactively plan implementation of a specific story before coding
 
 Turn one story into a development plan the user can understand, review, change, and resume in another chat. Use a critical interview with a continuously updated plan as its document. Do not implement the story while planning.
 
-## Require native plan mode
+## Use native plan mode for initial creation
 
-Enter the host's native plan mode automatically on invocation, before preparing or revising the plan, using its supported mode-switch mechanism when the agent can activate it. Activate it autonomously when possible, without asking for approval. If already active, including after a transition from `story-development`, remain there.
+When no development plan exists, enter the host's native plan mode before creating it, using its supported mode-switch mechanism when available. Activate it autonomously when possible. If the agent cannot switch modes, explain the limitation and ask the user to activate native plan mode for initial creation; wait for the host to confirm it is active. Do not claim a switch that did not happen or bypass host controls. If native plan mode is unavailable, explain that initial planning cannot proceed as specified.
 
-If the agent cannot activate it or higher-priority session instructions prevent it, explain the limitation, ask the user to switch to native plan mode, and wait until the host confirms that mode is active. Do not prepare, revise, or present the development plan while waiting. Do not substitute a planning-only conversation for native plan mode, claim a switch that did not happen, or bypass host controls. If native plan mode is unavailable in the host, explain that the workflow cannot proceed there as requested.
+When updating an existing plan, work in the current mode, including outside plan mode during implementation. Do not require a mode switch to clarify decisions, revise steps, dependencies, scope proposals, or verification, or reconcile a resumed plan. Resolve material scope changes and execution permissions with the user in the current conversation before affected implementation. Update the same displayed plan when supported. Return to native plan mode only when explicitly requested by the user, subject to the host's controls and higher-priority mode restrictions.
 
 ## Establish the story and repository
 
@@ -25,7 +25,7 @@ Use the source card's acceptance criteria as the basis for coverage. If it is a 
 
 ## Plan interactively within this story
 
-Keep native plan mode active throughout planning. No physical document, Notion page, or repository plan file is required; create one only if requested, following its destination's conventions.
+Keep native plan mode active while creating the initial plan. Revise an existing plan on the go in the current mode without asking the user to re-enter plan mode. No physical document, Notion page, or repository plan file is required; create one only if requested, following its destination's conventions.
 
 If the plan already exists in a side panel, canvas, or connected document, read and update that same artifact through the host's supported editing tool instead of maintaining a divergent chat-only copy. Preserve user edits and verify each saved update. Keep its artifact identity and latest verified revision in the resume state when available, and pass them to `story-development` so execution updates the same plan after leaving plan mode. If the artifact is unavailable or cannot be edited, report that the displayed version is not synchronized and provide the current plan in the conversation; do not claim that a chat response updated the side view.
 
