@@ -7,6 +7,8 @@ description: Implement or resume a specific story by using plan mode for initial
 
 Implement one story while preserving the user's understanding and ownership of the code. Work from a current, interactive plan. By default, execute only the authorized step and stop for user approval before the next one.
 
+If the user requests teacher mode or learning-focused pairing before or during the card, use the available `story-learning` skill in this conversation. Preserve the existing plan, work, and approvals; adapt the plan for learning and follow its user-as-driver boundary instead of implementing code autonomously. Ordinary questions about the code do not activate teacher mode by themselves.
+
 ## Initial planning and mode controls
 
 When no development plan exists, enter the host's native plan mode before creating the initial plan, using its supported mode-switch mechanism when available. If the agent cannot switch modes, explain the limitation and ask the user to activate it for initial planning. Do not claim a switch that did not happen or bypass host controls. If native plan mode is unavailable, explain that initial planning cannot proceed as specified.

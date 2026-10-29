@@ -7,6 +7,8 @@ description: Interactively plan implementation of a specific story before coding
 
 Turn one story into a development plan the user can understand, review, change, and resume in another chat. Use a critical interview with a continuously updated plan as its document. Do not implement the story while planning.
 
+When the user requests teacher mode or learning-focused pairing, use the available `story-learning` skill to add functional and learning objectives and user-driven increments to this plan. Carry that mode and its driver boundary into implementation; do not restart an existing card or assume the user's real experience is junior.
+
 ## Use native plan mode for initial creation
 
 When no development plan exists, enter the host's native plan mode before creating it, using its supported mode-switch mechanism when available. Activate it autonomously when possible. If the agent cannot switch modes, explain the limitation and ask the user to activate native plan mode for initial creation; wait for the host to confirm it is active. Do not claim a switch that did not happen or bypass host controls. If native plan mode is unavailable, explain that initial planning cannot proceed as specified.

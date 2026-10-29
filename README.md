@@ -29,7 +29,10 @@ mySkills/
 │   │   ├── SKILL.md
 │   │   ├── agents/openai.yaml
 │   │   └── references/development-plan.md
-│   └── story-development/
+│   ├── story-development/
+│   │   ├── SKILL.md
+│   │   └── agents/openai.yaml
+│   └── story-learning/
 │       ├── SKILL.md
 │       └── agents/openai.yaml
 └── teaching/
@@ -65,10 +68,11 @@ To keep the collection consistent and portable:
 | Project management | [Project-Documentation](projectManagement/Project-Documentation/SKILL.md) | Continue refinement while updating concise, contextual documentation in Notion or an existing repository. |
 | Software development | [Story Development Plan](softwareDevelopment/story-development-plan/SKILL.md) | Interactively plan one story as reviewable increments with clear completion criteria and resumable state. |
 | Software development | [Story Development](softwareDevelopment/story-development/SKILL.md) | Implement and resume a story one approved increment at a time, keeping the development plan and source card status current. |
+| Software development | [Story Learning](softwareDevelopment/story-learning/SKILL.md) | Pair on a card as a senior mentor with the user driving, using a learning-focused plan and candid technical feedback. |
 | Teaching | [Teaching Context](teaching/teaching-context/SKILL.md) | Resolve School in Notion and retrieve concepts, lessons, and assessments for specialized teaching workflows. |
 | Teaching | [Teaching Assessment](teaching/teaching-assessment/SKILL.md) | Collaboratively prepare practical assessments with increasing difficulty, a common route to 6/10, and an evaluation table. |
 
-The portable identifiers match the `name` fields in each `SKILL.md`: `notion-story-creation`, `project-definition`, `project-documentation`, `story-development-plan`, `story-development`, `teaching-context`, and `teaching-assessment`. The Notion workflows require access to the target project or teaching area through a Notion connector or equivalent integration; documentation and development in a repository require access to that repository and its relevant tools.
+The portable identifiers match the `name` fields in each `SKILL.md`: `notion-story-creation`, `project-definition`, `project-documentation`, `story-development-plan`, `story-development`, `story-learning`, `teaching-context`, and `teaching-assessment`. The Notion workflows require access to the target project or teaching area through a Notion connector or equivalent integration; documentation and development in a repository require access to that repository and its relevant tools.
 
 Teaching Context is the shared dependency for teaching workflows. The teacher has confirmed that School is the Notion wiki titled Scuola; the skill records its verified root and data source and discovers the current hierarchy for concepts, lessons, and assessments without assuming database names. Teaching Assessment requires this skill alongside it. It asks for missing subject and topics, retrieves the relevant lessons, and requests material directly from the teacher when lessons cannot be found. It then enters native plan mode autonomously when the host permits it and designs the assessment interactively. If the agent cannot switch modes, it explains the limitation and waits for the teacher to activate native plan mode; a host without that mode cannot run the workflow as specified.
 
@@ -87,6 +91,8 @@ Project-Definition asks for analysis depth before substantive questions and esta
 These workflows are inspired by Matt Pocock's [grill-me](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md) and [grill-with-docs](https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md), with explicit scope and depth controls and a separate documentation phase. They do not require those upstream skills to be installed.
 
 For implementation, Story Development uses native plan mode for initial planning when no development plan exists. If the host does not allow the agent to switch modes, it explains the limitation and waits for the user to activate native plan mode for initial creation; if that mode is unavailable, initial planning cannot proceed as specified. Existing plans are reconciled and revised in the current mode, including on resumption and during implementation, with a request to activate plan mode at the step boundary only when the displayed plan cannot be synchronized. Existing explicit execution authority remains valid, while plan revisions do not grant additional execution authority. The plan is built interactively; a stored document is optional. Each step has a logical outcome, completion criteria, verification evidence, and a review checkpoint. By default, the user must approve each increment before the next begins. Explicit permission for the next N steps or autonomous story completion changes that boundary only within the granted scope. The plan tracks changes, approvals, evidence, and remaining work and is returned in full at checkpoints so it can be pasted into another chat. Source changes must also be available in the resumed checkout.
+
+Story Learning activates when the user requests teacher mode before or during a card. It builds on Story Development and Story Development Plan, adapting the existing plan with functional objectives, learning objectives, prerequisites, driver work, and verification. The agent mentors as a senior developer while the user writes the implementation; a request for bounded agent help temporarily delegates only that action. Teaching depth follows the user's actual experience. Each increment starts with its functional purpose, continues with guidance and questions, and ends with verification and the existing review rules. User proposals receive candid technical evaluation, including changing the recommendation when their approach is better. Learning notes stay outside the card, and the resumable plan preserves the active learning mode and next driver action.
 
 ## Install everything with one command
 
