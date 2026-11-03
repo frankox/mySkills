@@ -69,6 +69,18 @@ Show enough concrete evidence for the user to understand and challenge the code 
 
 When the user requests changes during review, keep work on the current step, update the plan, and reverify affected criteria before presenting it again. User approval does not override objective completion criteria; record any explicitly agreed change to those criteria as a plan revision.
 
+## Create focused Gitmoji commits when requested
+
+Commit only when the user requests it or has explicitly authorized committing within the current scope. Approval of an implementation step alone is not commit authority, and a request to commit does not itself authorize pushing or rewriting existing history.
+
+Before committing, inspect the working tree, staged changes, applicable repository instructions, and relevant commit conventions. Group the authorized changes into small, conceptually coherent commits: each commit should have one clear purpose that a reviewer can understand and, where practical, revert independently. Separate unrelated features, fixes, refactors, or housekeeping. Keep necessary implementation, directly related tests, and required documentation together when separating them would leave an incomplete or broken change. Do not impose a fixed number of files, lines, or commits, or create artificial one-file commits merely to make them small. A development step can require several commits, and a small coherent change can require only one.
+
+Use the [Gitmoji specification](https://gitmoji.dev/specification) for each commit subject: `<intention> [scope?][:?] <message>`. Choose one appropriate emoji from the [official Gitmoji list](https://gitmoji.dev/) for the commit's actual purpose. Use the Unicode emoji by default, or its official `:shortcode:` when required by the repository or user. Add a scope only when useful or required. Write a concise, specific description of what changed in the repository's required language; add a body only when the reason, trade-off, or compatibility impact needs explanation. For example, `🐛 Fix expired-session redirect` or `📝 Clarify local setup instructions`. Do not replace the requested Gitmoji format with an unrelated convention or install a CLI or hook merely to format a message.
+
+Stage only the files or hunks belonging to the current logical change and the authorized scope, then inspect the staged diff before each commit. Preserve unrelated user changes and pre-existing staged work; do not sweep them into a commit, discard them, or silently unstage them to simplify splitting. If mixed changes cannot be separated reliably, explain the concrete ambiguity and resolve it before committing. Validate each commit's relevant behavior proportionately, run required repository checks, and do not bypass hooks to force a commit through.
+
+After committing, verify the resulting commit contents and working-tree state. Report the commit hashes and their distinct purposes, together with any relevant uncommitted work or failed checks. Update the resumable plan with the commits that carry the implementation. Do not amend, squash, or rebase existing commits merely to retrofit this granularity without authorization.
+
 ## Manage the source card status
 
 When the story, task, or spike has a source tracker card, maintaining its status is part of this workflow and does not require separate permission at each transition. Honor an explicit request to leave the tracker unchanged. This authority covers the source card's status only, not unrelated cards or other properties.
