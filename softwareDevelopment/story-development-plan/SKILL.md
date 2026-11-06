@@ -7,7 +7,7 @@ description: Interactively plan implementation of a specific story before coding
 
 Turn one story into a development plan the user can understand, review, change, and resume in another chat. Use a critical interview with a continuously updated plan as its document. Do not implement the story while planning.
 
-When the user requests teacher mode or learning-focused pairing, use the available `story-learning` skill to add functional and learning objectives and user-driven increments to this plan. Carry that mode and its driver boundary into implementation; do not restart an existing card or assume the user's real experience is junior.
+When the user requests teacher mode or learning-focused pairing, use the available `story-learning` skill to add functional and learning objectives and user-driven increments to this plan. Describe outcomes, responsibilities, constraints, and open design decisions rather than a script of code edits for the user to copy. During implementation, navigation should unpack each increment into smaller technical decisions while leaving implementation to the driver. Carry that mode and its driver boundary into implementation; do not restart an existing card or assume the user's real experience is junior.
 
 ## Use native plan mode for initial creation
 

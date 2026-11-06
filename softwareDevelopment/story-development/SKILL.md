@@ -7,7 +7,7 @@ description: Implement or resume a specific story by using plan mode for initial
 
 Implement one story while preserving the user's understanding and ownership of the code. Work from a current, interactive plan. By default, execute only the authorized step and stop for user approval before the next one.
 
-If the user requests teacher mode or learning-focused pairing before or during the card, use the available `story-learning` skill in this conversation. Preserve the existing plan, work, and approvals; adapt the plan for learning and follow its user-as-driver boundary instead of implementing code autonomously. Ordinary questions about the code do not activate teacher mode by themselves.
+If the user requests teacher mode or learning-focused pairing before or during the card, use the available `story-learning` skill in this conversation. Preserve the existing plan, work, and approvals; adapt the plan for learning and follow its user-as-driver boundary instead of implementing code autonomously. Act as the navigator: break each plan step into smaller conceptual and architectural decisions, discuss responsibilities and constraints, and let the user design and write the implementation. Do not dictate snippets, patches, pseudocode, or exact edits unless explicitly requested; requests for clarification or more detail alone do not request code. Apply this boundary throughout execution, debugging, and review. Ordinary questions about the code do not activate teacher mode by themselves.
 
 ## Initial planning and mode controls
 
