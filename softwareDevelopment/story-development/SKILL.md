@@ -1,17 +1,17 @@
 ---
 name: story-development
-description: Implement or resume a specific story by using plan mode for initial planning when no plan exists, then executing reviewable increments from an interactive development plan. Keep the plan and source card status current, and require user approval between steps unless the user explicitly grants broader execution authority.
+description: Implement or resume a specific card with repository analysis and a critical requirements interview, then execute reviewable increments with a development plan unless the user explicitly requests no plan. Keep the source card status current and require approval between steps unless broader execution authority is granted.
 ---
 
 # Story Development
 
-Implement one story while preserving the user's understanding and ownership of the code. Work from a current, interactive plan. By default, execute only the authorized step and stop for user approval before the next one.
+Implement one card while preserving the user's understanding and ownership of the code. Analyze the context and resolve material decisions before coding, whether or not a plan is requested. Normally work from a current, interactive plan; honor an explicit request to develop without one. By default, execute only the authorized increment and stop for user approval before the next one.
 
 If the user requests teacher mode or learning-focused pairing before or during the card, use the available `story-learning` skill in this conversation. Preserve the existing plan, work, and approvals; adapt the plan for learning and follow its user-as-driver boundary instead of implementing code autonomously. Act as the navigator: break each plan step into smaller conceptual and architectural decisions, discuss responsibilities and constraints, and let the user design and write the implementation. Do not dictate snippets, patches, pseudocode, or exact edits unless explicitly requested; requests for clarification or more detail alone do not request code. Apply this boundary throughout execution, debugging, and review. Ordinary questions about the code do not activate teacher mode by themselves.
 
 ## Initial planning and mode controls
 
-When no development plan exists, enter the host's native plan mode before creating the initial plan, using its supported mode-switch mechanism when available. If the agent cannot switch modes, explain the limitation and ask the user to activate it for initial planning. Do not claim a switch that did not happen or bypass host controls. If native plan mode is unavailable, explain that initial planning cannot proceed as specified.
+When no development plan exists and the user has not requested development without a plan, enter the host's native plan mode before creating the initial plan, using its supported mode-switch mechanism when available. If the agent cannot switch modes, explain the limitation and ask the user to activate it for initial planning. Do not claim a switch that did not happen or bypass host controls. If native plan mode is unavailable, explain that initial planning cannot proceed as specified.
 
 When a plan already exists, including on resumption or transition from `story-development-plan`, reconcile it with the current story, checkout, and execution authority in the current mode. First try to update that plan autonomously in the current mode; if the displayed plan cannot be updated, apply the end-of-step fallback below. During execution, update it on the go as feedback and evidence arrive, including changes to decisions, dependencies, step boundaries, and verification methods. Plan editing and execution approval are separate: a revision does not authorize additional work.
 
@@ -23,6 +23,25 @@ After initial planning, use the host's supported transition to implementation on
 2. Recover the full story, relevant AC or task/spike completion targets, linked requirements, and repository. Ask about unavailable or ambiguous inputs that affect the work.
 3. Read applicable repository instructions, project documentation, relevant source and tests, dependency versions, and technology-specific skills. Inspect the working tree and existing changes before edits. Retrieve the context needed for this story, not the entire project history.
 4. Recover any existing development plan and compare it with the actual code and story. Preserve valid work and decisions. Do not trust a pasted “completed” status when the corresponding code or evidence is missing or inconsistent.
+
+## Analyze and interview before implementation
+
+Apply a critical, adaptive interview inspired by [grill-me](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md) before preparing a plan and before coding without a plan. The procedure here is self-contained; it does not require an upstream skill. A request to skip the plan removes the planning artifact, not analysis or necessary questions.
+
+- Investigate the actual repository, card, documentation, tests, and existing behavior first. Establish facts through available sources; do not ask the user to research something the agent can inspect. Keep read-only investigation moving while awaiting independent user decisions.
+- Map the material decisions and their dependencies. Identify which questions can be answered now and which depend on an unresolved choice or missing evidence. Do not choose downstream behavior based on an answer the user has not given.
+- Ask focused questions in successive rounds, usually one at a time or up to three independent questions together. Explain why each matters and offer a recommendation with concrete trade-offs when useful. Wait for answers before dependent questions or implementation; a recommendation is not agreement.
+- Probe the actual objective, observable behavior, exclusions, responsibilities, interfaces, data constraints, relevant failure cases, dependencies, and acceptance evidence as needed for this card. Challenge contradictions and weak assumptions constructively. Ask for concrete examples when abstract wording hides different interpretations. These are areas to investigate, not a mandatory questionnaire for every task.
+- After each answer, update the shared understanding and follow its consequences until material choices are settled. Record accepted decisions separately from proposals, assumptions, and deferred questions. Do not repeat settled questions unless new evidence conflicts with them or reopen completed discovery on every step.
+- Continue until the authorized work can be implemented and checked without silently inventing consequential requirements. Settle uncertainties affecting correctness, scope, architecture, or acceptance with the user before dependent edits. Handle routine implementation details using repository conventions and judgment. Defer unrelated questions explicitly rather than expanding the card or interviewing indefinitely.
+
+Briefly state the resulting scope, essential decisions, and any agreed deferrals before starting. Reuse existing execution authority; do not add a ceremonial approval when the user already authorized the now-defined work. If later evidence exposes a material gap, resume targeted investigation and questions before the affected implementation. An autonomous execution grant does not supply missing product decisions.
+
+## When development without a plan is requested
+
+Honor an explicit request such as “develop without a plan” or “skip planning.” Run the analysis and interview above in the current mode, but do not force native plan mode, create a development plan, or invoke the planning skill merely to satisfy the default workflow. If an existing plan is set aside, preserve its history without pretending it remains synchronized. Higher-priority host mode restrictions still apply.
+
+In this branch, plan creation, plan approval, full plan snapshots, progress tables, and displayed-plan synchronization gates below do not apply. Keep only a concise conversational record of agreed scope, decisions, blockers, verification, and current execution authority; do not recreate a full plan under another name. Identify the next bounded increment and its completion evidence before editing. Retain the normal per-increment review boundary unless the user explicitly grants broader execution authority; “without a plan” alone does not waive review or authorize unrelated work. Continue to maintain card status, report actual checks, and preserve commit and push authorization boundaries. In teacher mode, retain conceptual navigation and the user's driver role without requiring a learning-plan artifact.
 
 ## Obtain an interactive development plan
 

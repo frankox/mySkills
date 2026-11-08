@@ -9,6 +9,8 @@ Turn one story into a development plan the user can understand, review, change, 
 
 When the user requests teacher mode or learning-focused pairing, use the available `story-learning` skill to add functional and learning objectives and user-driven increments to this plan. Describe outcomes, responsibilities, constraints, and open design decisions rather than a script of code edits for the user to copy. During implementation, navigation should unpack each increment into smaller technical decisions while leaving implementation to the driver. Carry that mode and its driver boundary into implementation; do not restart an existing card or assume the user's real experience is junior.
 
+If the user explicitly requests implementation without a plan, continue through `story-development` in its no-plan branch: preserve the analysis and critical interview, but do not require a planning artifact or a mode switch just to create one. Do not implement through this planning-only skill.
+
 ## Use native plan mode for initial creation
 
 When no development plan exists, enter the host's native plan mode before creating it, using its supported mode-switch mechanism when available. Activate it autonomously when possible. If the agent cannot switch modes, explain the limitation and ask the user to activate native plan mode for initial creation; wait for the host to confirm it is active. Do not claim a switch that did not happen or bypass host controls. If native plan mode is unavailable, explain that initial planning cannot proceed as specified.
@@ -24,6 +26,16 @@ When updating an existing plan, work in the current mode, including outside plan
 5. If a supplied plan already exists, recover it and compare its story, code state, decisions, and unfinished work with current evidence. Preserve valid decisions and progress instead of restarting discovery.
 
 Use the source card's acceptance criteria as the basis for coverage. If it is a task or spike, use its checklist or expected output instead of fabricating user-story AC. Ask about missing or contradictory requirements that affect implementation.
+
+## Resolve decisions through a critical interview
+
+Use an adaptive interview inspired by [grill-me](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md). These instructions are self-contained and require no upstream skill. Investigate facts in the repository and accessible sources before asking the user; ask for intent, preferences, and consequential design decisions that evidence cannot settle.
+
+Map dependencies between the material decisions. Ask only questions whose prerequisites are known, then follow the consequences of each answer in later rounds. Usually ask one focused question or up to three independent questions at a time. Give a reasoned recommendation and useful alternatives, explain what the answer changes, and wait for the answer before dependent design work. Do not front-load an exhaustive questionnaire or treat a suggested default as an accepted decision.
+
+Probe requirements and design critically: reconcile contradictory AC, test assumptions against concrete examples, compare responsibility boundaries and credible architectures, and settle relevant data, interface, failure-handling, compatibility, and validation choices. Adapt the questions to the card and answers rather than reading a fixed checklist. Consider the user's alternatives honestly and revise a recommendation when their reasoning or evidence is stronger.
+
+Keep confirmed decisions, proposed choices, accepted assumptions, unresolved dependencies, and explicitly deferred topics distinct in the evolving plan. Do not repeat answered questions without new conflicting evidence. End the interview when the scoped work can be implemented and verified without guessing consequential requirements; do not demand answers to unrelated questions or a fixed question count. Ask again during development if new evidence changes a material decision. Execution without a plan uses the same analysis standard through `story-development`.
 
 ## Plan interactively within this story
 

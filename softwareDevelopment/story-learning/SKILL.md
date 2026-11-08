@@ -17,6 +17,8 @@ Ask briefly what the user wants to learn and what they already know when that is
 
 For card development, read the available `story-development` and `story-development-plan` instructions as needed and preserve their context retrieval, completion criteria, execution approvals, card status lifecycle, and plan synchronization rules. Resolve these skills by their installed names; they are dependencies for the integrated development workflow. If either is unavailable, explain which integration is missing rather than claiming to follow it. Concept explanations may continue, but do not invent missing workflow rules.
 
+Preserve the development workflow's critical analysis and adaptive requirements interview, including when the user requests development without a plan. Discuss material technical and architectural choices together without turning the interview into code dictation. If a plan is explicitly waived, use conceptual navigation and concise conversational checkpoints instead of requiring a learning-plan artifact.
+
 Apply the teacher-specific driver boundary below instead of ordinary agent-led implementation. A prior grant to finish steps autonomously does not authorize taking the keyboard away from the user after teacher mode starts.
 
 ## Adapt the development plan for learning
