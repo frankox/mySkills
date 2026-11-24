@@ -49,7 +49,7 @@ If no plan exists, use the available `story-development-plan` skill for initial 
 
 Planning must remain scoped to the single story and include critical questions about unresolved behavior, design choices, and validation. Keep native plan mode active during initial plan creation; existing-plan revisions may take place in the current execution mode. A physical document is optional; do not require a Notion page or repository file to begin.
 
-A usable plan contains a brief description, the scoped completion targets, repository and working-tree context, stable step IDs with outcomes and completion criteria, dependencies, validation evidence, statuses and review decisions, current decisions or blockers, and the exact next action and execution authority. If these are missing, resolve them before the affected work.
+A usable plan contains a brief description, the scoped completion targets, repository and working-tree context, stable step IDs with outcomes and completion criteria, dependencies, validation evidence, statuses and review decisions, current decisions or blockers, and the exact next action and execution authority. Every step must be a vertical slice or a self-contained capability. Explain what it contributes to this card, why it comes at this point in the sequence, and the logic, code changes, contracts, or integration details needed to understand it before implementation. Choose the structure and depth that fit each step. A table of titles or a sequence of layer-by-layer tasks is insufficient. Read the available planning skill's development-plan format when creating or enriching a plan. Fill missing detail for all steps before presenting it as ready, preserving valid work and stable IDs. Do not treat a request for deeper plan descriptions as permission to implement.
 
 Before first execution, ensure the user approved the plan and authorized the first step. If authorization was already explicitly supplied, honor it without asking again. Plan approval alone is not permission to execute every step.
 
@@ -67,7 +67,7 @@ The default is **one step at a time, with user approval before proceeding**. Thi
 
 ## Execute the current increment
 
-1. Identify the authorized step, its objective, completion criteria, and code boundary. Mark it `in_progress` before editing.
+1. Identify the authorized vertical slice or self-contained capability, its card coverage, relevant design and code changes, prerequisites, and completion evidence. Resolve material gaps through the critical interview before dependent edits; preserve the behavior boundary rather than fragmenting the slice into disconnected layer tasks. Mark it `in_progress` before editing when a plan is in use.
 2. Implement only the work needed for that increment. Necessary changes within the agreed boundary are part of the step; unrelated refactors, modernization, or later-step work are not.
 3. Follow applicable repository and technology documentation and skills for actual coding. Prefer established patterns, clear names, cohesive functions or modules, straightforward control flow, and the simplest adequate design. Avoid speculative abstractions and unnecessary dependencies.
 4. Write as few comments as necessary. Use comments for non-obvious constraints, invariants, or reasons that code cannot express clearly; avoid narrating obvious operations. Preserve existing comments unless changing them is required by the work or requested, and keep required documentation and public API conventions.

@@ -1,16 +1,16 @@
 # Resumable development plan
 
-The plan is both the agreed implementation sequence and the current handoff state. Keep it concise and self-contained enough to paste into another chat without relying on messages such as “as discussed above.” Use the user's or project's required language.
+The plan is both the agreed implementation sequence and the current handoff state. Make it self-contained enough to review and resume without relying on messages such as “as discussed above.” Keep summary and state fields compact, but explain each step's contribution and place in the sequence, with the logic and code detail a reader needs to understand it before implementation. Do not compress those details into a checklist of titles. Use the user's or project's required language.
 
 ## Required content
 
 - **Brief description:** the problem and intended result for this story.
 - **Story and scope:** source reference when available, a compact snapshot of the relevant AC or completion targets with stable labels, constraints, and exclusions. Include enough context to resume even if the source cannot immediately be fetched.
 - **Repository context:** repository or checkout identity, branch and commit when available, relevant paths, documentation or skill references, and the actual state of existing or uncommitted work.
-- **Incremental steps:** a progress table covering every step, followed by details with stable IDs, outcome, coverage, implementation boundary, completion criteria, validation, explicit current status, and review evidence.
+- **Incremental steps:** a progress table covering every step, followed by detailed vertical slices or self-contained capabilities with stable IDs, card-specific outcomes and coverage, logical design, code-level implementation maps, scope boundaries, completion criteria, validation, explicit current status, and review evidence.
 - **Current state:** active or next step, plan revision, unresolved questions or blockers, accepted decisions, exact next action, and execution authority.
 
-Use this structure as a compact default. Preserve a supplied plan's equivalent structure instead of reformatting it unnecessarily:
+Use this example as a flexible structure. Preserve a supplied plan’s equivalent structure and enrich missing detail. Combine explanation into prose or use subheadings where useful. Include applicable details and omit sections that add no information.
 
 ```markdown
 # Development plan: [Story title]
@@ -39,15 +39,17 @@ Use this structure as a compact default. Preserve a supplied plan's equivalent s
 
 ### S1 — [Outcome]
 - Status: planned
-- Covers: [Completion targets or necessary enabling work.]
-- Change boundary: [Behavior, components, or relevant paths.]
 - Depends on: [Step IDs or none.]
+
+[Explain the result, the card requirements it covers, and why it comes here in the sequence. Weave in the logic, design rationale, affected code, and integration points when they matter to understanding the slice. Use separate subheadings if the step needs them.]
+
+#### Completion and review
 - Done when: [Specific, determinable criteria.]
-- Verification: [Test/check or explicit user acceptance and what to review.]
+- Verification: [Checks or acceptance observations for this slice's behavior and relevant integration, including the expected result and meaningful edge cases.]
 - Evidence: [Not run yet, or actual result and remaining gaps.]
 - Review: pending
 
-[Additional steps with the same fields as needed.]
+[Describe every additional step with enough detail to understand it and its role in the sequence before implementation.]
 
 ## Resume state
 - Revision: [Plan revision.]
@@ -63,6 +65,8 @@ Use this structure as a compact default. Preserve a supplied plan's equivalent s
 ```
 
 Do not leave template placeholders in a delivered plan. Use “unknown,” “not run,” or “not applicable” where accurate, and ask when an unknown blocks the next action. Add fields only when they help implementation or resumption.
+
+Each step delivers a demonstrable vertical slice or a self-contained capability after its prerequisites. Keep the implementation, relevant integration, and verification together rather than splitting a single feature into layers or one-file tasks. An internal capability or a spike's complete experiment can be a valid outcome. Before presenting the plan, check that the reader can understand each step’s card coverage, behavior, and completion evidence, and why the sequence delivers the card. Include any logic and code changes that make those explanations clear. In teacher mode, describe code responsibilities and contracts while preserving the driver's ownership of the implementation.
 
 ## State and approval
 

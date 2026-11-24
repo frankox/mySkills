@@ -56,17 +56,22 @@ Keep this working plan separate from the source card, even when both are in Noti
 
 Read [the development plan format](references/development-plan.md) before producing the plan. Start with a brief description, then a sequence of incremental steps; include the compact state needed to resume work.
 
-Each step must have:
+Give each step a stable ID, a verifiable outcome, a current status, and completion criteria. Use the following prompts to decide what explanation the user needs. Combine related points in prose or use headings when they help the reader follow the step.
 
-- A stable identifier, a clear outcome, and an understandable boundary in the code.
-- A link to the AC, task item, expected output, or necessary enabling work it addresses.
+- A card-specific explanation of the problem this step solves, the behavior it delivers, the AC, task items, or expected output it covers, and what remains outside its scope.
+- Where the logic needs explanation, describe the relevant responsibilities, flow of data or control, inputs and outputs, state changes, rules, invariants, and meaningful failure cases. Explain how the parts cooperate to deliver the outcome rather than merely naming components.
+- Where code detail matters, explain the changes using the inspected repository, including existing files, modules, classes, scenes, or other relevant units to change; proposed units to introduce; each unit's responsibility; affected interfaces, contracts, callers, and integration points; and how the changes connect. Distinguish verified existing symbols from proposed names and resolve material unknowns rather than inventing paths or APIs.
 - Explicit completion criteria and a proportionate verification method.
 - Relevant prerequisites and a review point that lets the user understand what changed and why.
 - An explicit current status: `planned` (to do), `in_progress`, or `completed` (done), with the additional review, blocked, and superseded states defined in the plan format when applicable. Never leave a step's status implicit or track only the active step.
 
 Include a compact progress table listing every step ID, outcome, and current status before the detailed increments. Initialize unstarted steps as `planned`; for resumed work, recover statuses from the actual code, evidence, and review decisions. Keep this table synchronized with the detailed steps throughout implementation and in every full plan snapshot. Render human-facing labels in the user's or project's required language.
 
-Prefer coherent behavior changes that include their relevant implementation and verification. Split steps when their combined behavior or diff would be difficult to review. Combine trivial edits when separating them would create ceremony without a useful checkpoint. Do not prescribe a fixed step count or turn each file, import, or command into a separate step.
+Build each step around a vertical slice or a self-contained feature, including all layers and verification necessary to make that capability work. A slice may depend on a previous slice, but it must deliver its own inspectable result rather than leave disconnected pieces awaiting a later integration step. Do not split a capability into separate model, service, UI, and test steps, or make individual files, classes, imports, or commands the milestones. For an internal task or spike, use a complete technical capability or an independently useful experiment and its findings instead of inventing a user-facing feature. Necessary setup belongs with the first slice it enables unless it is itself the card's independently verifiable capability.
+
+Before implementation, check that the reader can explain what each step adds to the card, why it comes at that point, and how it connects to the next relevant slice. For a simple change, one paragraph may cover everything. Give complex steps the explanation they need, including later steps. Use the progress table to navigate the plan and the step descriptions to explain it. Scale length to the actual feature, using coherent paragraphs and useful lists without a fixed bullet or file limit. Avoid generic text such as “implement the logic,” “wire everything,” or “add tests” without explaining the behavior, integration, and evidence involved. Include a concrete before/after example or execution path when it clarifies the boundary.
+
+Split steps when they contain several separable capabilities or their combined behavior would be difficult to review. Keep a single capability together across files and layers; combine trivial edits when separating them creates ceremony without an outcome. Document consequential design decisions before implementation while leaving routine coding choices to execution. In teacher mode, this code-level detail describes responsibilities and integration, not code bodies or a script for the driver to copy.
 
 Completion can be established by observable AC coverage, meaningful automated tests developed for that increment, an appropriate existing check, or explicit user acceptance when objective verification is impractical. State which evidence is required. Do not promise test-driven development, require new tests for every trivial change, or use tests that merely mirror the implementation.
 
