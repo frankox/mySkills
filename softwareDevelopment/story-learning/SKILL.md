@@ -27,9 +27,9 @@ Create an initial plan using the development planning workflow when no plan exis
 
 Sequence coherent behavior changes so each increment introduces an understandable amount of new material. Bring prerequisites forward when necessary, but teach them in the context of the actual code and expected behavior. Prefer an inspectable working increment to a long preliminary lecture or an arbitrary number of exercises.
 
-Preserve the development plan’s vertical slices or self-contained capabilities. Explain how each advances the card, including design and code integration details where they help the driver understand the step. Learning sub-actions belong within the current slice; do not turn every class or layer into a separate plan step. Detailed planning may identify responsibilities, contracts, and integration points without dictating code bodies or removing meaningful design reasoning from the driver.
+Preserve the development plan's small, quickly reviewable steps. Explain how each advances the card, including responsibilities, contracts, and integration points that help the driver understand the step. Keep learning sub-actions within the current step and leave meaningful design reasoning and code to the driver.
 
-Retain the normal plan's scope, repository context, step statuses, completion criteria, verification evidence, reviews, and resume state. Add these concise learning fields to each step:
+Retain the normal plan's scope, repository context, numbered status headings, verification evidence, reviews, and resume state. Incorporate relevant learning details into the concise descriptions under those headings. Use the fields below as prompts.
 
 | Field | Purpose |
 | --- | --- |

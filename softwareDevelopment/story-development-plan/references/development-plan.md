@@ -1,16 +1,16 @@
 # Resumable development plan
 
-The plan is both the agreed implementation sequence and the current handoff state. Make it self-contained enough to review and resume without relying on messages such as “as discussed above.” Keep summary and state fields compact, but explain each step's contribution and place in the sequence, with the logic and code detail a reader needs to understand it before implementation. Do not compress those details into a checklist of titles. Use the user's or project's required language.
+The plan is both the agreed implementation sequence and the current handoff state. Make it self-contained enough to review and resume in another chat. Use the user's or project's required language for the prose and the three status tokens below for step headings.
 
 ## Required content
 
 - **Brief description:** the problem and intended result for this story.
 - **Story and scope:** source reference when available, a compact snapshot of the relevant AC or completion targets with stable labels, constraints, and exclusions. Include enough context to resume even if the source cannot immediately be fetched.
 - **Repository context:** repository or checkout identity, branch and commit when available, relevant paths, documentation or skill references, and the actual state of existing or uncommitted work.
-- **Incremental steps:** a progress table covering every step, followed by detailed vertical slices or self-contained capabilities with stable IDs, card-specific outcomes and coverage, logical design, code-level implementation maps, scope boundaries, completion criteria, validation, explicit current status, and review evidence.
+- **Steps:** one heading per step with its stable number, short name, and status. Follow it with concise prose covering one small outcome, the implementation decisions needed to review it, and a focused verification with an expected result. Record actual evidence and review disposition there when available. Mention a prerequisite or link to a completion target only when it clarifies the step.
 - **Current state:** active or next step, plan revision, unresolved questions or blockers, accepted decisions, exact next action, and execution authority.
 
-Use this example as a flexible structure. Preserve a supplied plan’s equivalent structure and enrich missing detail. Combine explanation into prose or use subheadings where useful. Include applicable details and omit sections that add no information.
+Use the format below without a progress table or a second list of step titles. Keep steps in dependency order. When revising an older plan, fold any separate progress list into the step headings and retain the existing decisions, evidence, and approvals. Keep the surrounding sections compact and omit fields with no information useful for review or resumption.
 
 ```markdown
 # Development plan: [Story title]
@@ -29,27 +29,15 @@ Use this example as a flexible structure. Preserve a supplied plan’s equivalen
 - Relevant code and guidance: [...]
 - Working tree / existing work: [...]
 
-## Incremental steps
+## Steps
 
-| Step | Outcome | Status |
-| --- | --- | --- |
-| S1 | [Outcome] | planned |
+### 1. [Short step name] — todo
 
-[Include every step in this table, including completed and unstarted steps.]
+[Describe the outcome and the concrete implementation choices, naming the affected component, contract, or documentation section when helpful.]
 
-### S1 — [Outcome]
-- Status: planned
-- Depends on: [Step IDs or none.]
+[State how to verify this change and what should happen. Add the actual check result and review disposition when available.]
 
-[Explain the result, the card requirements it covers, and why it comes here in the sequence. Weave in the logic, design rationale, affected code, and integration points when they matter to understanding the slice. Use separate subheadings if the step needs them.]
-
-#### Completion and review
-- Done when: [Specific, determinable criteria.]
-- Verification: [Checks or acceptance observations for this slice's behavior and relevant integration, including the expected result and meaningful edge cases.]
-- Evidence: [Not run yet, or actual result and remaining gaps.]
-- Review: pending
-
-[Describe every additional step with enough detail to understand it and its role in the sequence before implementation.]
+[Repeat the heading and concise description for each additional step.]
 
 ## Resume state
 - Revision: [Plan revision.]
@@ -66,28 +54,21 @@ Use this example as a flexible structure. Preserve a supplied plan’s equivalen
 
 Do not leave template placeholders in a delivered plan. Use “unknown,” “not run,” or “not applicable” where accurate, and ask when an unknown blocks the next action. Add fields only when they help implementation or resumption.
 
-Each step delivers a demonstrable vertical slice or a self-contained capability after its prerequisites. Keep the implementation, relevant integration, and verification together rather than splitting a single feature into layers or one-file tasks. An internal capability or a spike's complete experiment can be a valid outcome. Before presenting the plan, check that the reader can understand each step’s card coverage, behavior, and completion evidence, and why the sequence delivers the card. Include any logic and code changes that make those explanations clear. In teacher mode, describe code responsibilities and contracts while preserving the driver's ownership of the implementation.
+Before presenting the plan, check that each step can be reviewed quickly at its place in the sequence and that the full sequence covers the card. A description should let the reviewer anticipate what will change and how to check it. Expand it only where a consequential choice or integration would otherwise be unclear.
 
 ## State and approval
 
-| Step status | Meaning |
-| --- | --- |
-| `planned` | To do: not started. |
-| `in_progress` | Work started; completion criteria are not yet met. |
-| `awaiting_review` | Implementation and available checks are ready for the user's review; any required human acceptance is still pending. |
-| `completed` | Done: completion criteria met and the user approved the increment, or an explicit execution grant waived the intermediate review. |
-| `blocked` | A concrete obstacle prevents completion. Record what is needed. |
-| `superseded` | An agreed plan change replaced this step. Preserve its identifier and disposition. |
+- `todo` means work has yet to start.
+- `doing` starts before the authorized edits and continues through pending checks or review.
+- `done` means the completion criteria are met and the user approved the step or an explicit grant waived that review.
 
-Record review separately: pending, user-approved, changes-requested, or waived under a specific grant. Never label an automatically continued step “user-approved.” A passing test or an elapsed wait is not user approval. A grant may waive intermediate review; it does not make failing checks pass.
-
-Every step must have exactly one current status, shown both in the progress table and its details. Initialize new, unstarted steps as `planned`, mark the authorized step `in_progress` before implementation, and update it as verification and review change its state. A blocked step or one awaiting review is not `completed`. Render labels in the user's or project's required language while preserving these meanings.
+Record pending review, requested changes, waived review, and concrete blockers in the description or resume state when relevant. A blocker keeps the step at `todo` or `doing` according to whether it has started. When an agreed revision replaces a step, record its old identifier and replacements in the resume state so recorded approvals remain traceable. Passing checks do not grant approval, and waived review does not satisfy unmet completion criteria.
 
 ## Keep the plan current
 
 These updates apply to the working plan in the conversation or an explicitly requested separate plan document, never to the source backlog card. Do not append plan snapshots or a development history to that card.
 
-After a decision, meaningful implementation change, check result, or approval, update affected plan fields, the progress table, and the resume state together. Keep the status of every step visible, including work still to do and work already done; do not replace the complete progress table with only the active step. Preserve stable step IDs; do not silently renumber pending work or erase previous approvals. When changing a completed step's obligations, invalidate affected completion or evidence and explain what must be reverified.
+After a decision, meaningful implementation change, check result, or approval, update the affected descriptions, heading statuses, and resume state. Keep all current steps visible, including those already done. Preserve stable step identifiers and previous approvals when revising the sequence. When changing a completed step's obligations, invalidate affected completion or evidence and explain what must be reverified.
 
 When an existing side view or connected document displays the plan, persist those updates to the same artifact using the host's supported editing tool and verify the saved content or revision. Preserve its identity across planning and execution. Try to synchronize necessary revisions alongside development in the current mode; applicable scope and execution approvals still apply. A chat snapshot or separate checklist is not evidence that the side view changed. Record any failed or unavailable synchronization and pending changes in the resume state. At the end of the current authorized step, or an earlier stopping checkpoint, explicitly say that the displayed plan needs updating and ask the user to activate native plan mode. This fallback also applies under broader execution grants. Wait for host confirmation, publish the full revised plan using the supported plan-output mechanism, and retain the remaining execution authority when returning to implementation. Do not claim the displayed copy is current without verification.
 
