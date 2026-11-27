@@ -63,7 +63,7 @@ To keep the collection consistent and portable:
 
 | Domain | Skill | Purpose |
 | --- | --- | --- |
-| Project management | [Notion-Story-Creation](projectManagement/Notion-Story-Creation/SKILL.md) | Create Notion cards as stories with named scenarios or standalone AC blocks and GIVEN/WHEN/THEN/AND clauses, spikes with expected outputs, or tasks with to-do lists. |
+| Project management | [Notion-Story-Creation](projectManagement/Notion-Story-Creation/SKILL.md) | Apply type-specific templates and icons: stories with Description and Acceptance criteria, tasks with Description and Todos, spikes with Description and Outcome. Group story ACs with a shared Given into scenarios. |
 | Project management | [Project-Definition](projectManagement/Project-Definition/SKILL.md) | Refine ideas through a critical interview with explicit scope and depth, then offer a documentation handoff. |
 | Project management | [Project-Documentation](projectManagement/Project-Documentation/SKILL.md) | Continue refinement while updating concise, contextual documentation in Notion or an existing repository. |
 | Software development | [Story Development Plan](softwareDevelopment/story-development-plan/SKILL.md) | Interactively plan one story as reviewable increments with clear completion criteria and resumable state. |
@@ -80,7 +80,9 @@ Assessments use one common version and common mastery criteria while preserving 
 
 Teaching Assessment explicitly asks whether to use Onlitest. If selected, it proposes a self-contained, copy-ready template for the Onlitest chatbot with the agreed tasks, taught scope, scoring, correction key, and delivery constraints. Planning also resolves the actual Verifiche destination and maps assessment metadata to its current Notion properties. Moving from the agreed plan to implementation includes creating and verifying the assessment page in Verifiche, with applicable writable properties correctly populated, without a separate save approval. The page also contains the chatbot handoff when selected; creating or publishing an assessment in Onlitest itself requires a separate request.
 
-Backlog cards stay minimal throughout development. Stories and tasks retain their brief description and AC or to-do list; development plans, redirects, progress, and handoff state stay outside the card. A completed spike contains only a concise Output section summarizing the result. If its deliverable is other cards, that section contains only links to the cards created.
+Backlog cards stay minimal throughout development. Stories and tasks retain their brief description and AC or to-do list; development plans, redirects, progress, and handoff state stay outside the card. A completed spike contains only a concise `Outcome` section summarizing the result. If its deliverable is other cards, that section contains only links to the cards created.
+
+On an agent-handled type selection or change, apply the template and native page icon together: 📖 for story, 🔧 for task, and 🔍 for spike. Template headings stay in English; descriptive content follows the project's language. Automatic application after manual type changes in Notion requires a supported, separately configured database mechanism; updating a skill does not install that automation.
 
 Story Development manages the source card's status as part of execution, using the destination's existing English workflow values without separate approval for each transition. Planning preserves the current status; authorized implementation activates the card; final pending review and concrete blockers use matching statuses when available; completion requires all work, checks, and applicable final approval. Individual step checkpoints do not complete the whole card. Saved transitions are verified, and unavailable or failed tracker updates remain explicit in the resume state.
 
